@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System | Virgilio Madrid</title>
+    
+    <!-- External fonts and styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="overlay">
+        <div class="container">
+            <!-- Header section -->
+            <header>
+                <div class="header-left">
+                    <div class="logo_img"></div>
+                    <div class="header-text">
+                        <h1>Movie Recommendation System</h1>
+                        <h2>Elaborated by: Virgilio Madrid | Data Scientist</h2>
+                        <h3>This project recommends movies based on user ratings.</h3>
+                        <p class="subtitle">Skills: Python | Flask | Data Science | Backend | Frontend</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="profile_img"></div>
+                    <!-- Social media buttons -->
+                    <div class="social-buttons">
+                        <a href="https://www.linkedin.com/in/vamadrid" target="_blank" class="social-button linkedin-button">
+                            <i class="fab fa-linkedin-in"></i> LinkedIn
+                        </a>
+                        <a href="https://api.whatsapp.com/send?phone=50431755652&text=" target="_blank" class="social-button whatsapp-button">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                        <a href="mailto:virgiliomadrid1994@gmail.com" class="social-button email-button">
+                            <i class="fas fa-envelope"></i> E-Mail
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Search form -->
+            <div class="search-container">
+                <form method="POST" id="movie-form">
+                    <input type="text" id="movie-input" name="movie_title" placeholder="Enter the movie title and select from the list" required>
+                    <input type="submit" value="Search">
+                </form>
+                <div id="autocomplete-results"></div>
+            </div>
+            
+            <!-- Error message display -->
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+
+            <!-- Movie recommendations display -->
+            {% if recommendations %}
+                <div class="recommendations">
+                    <h2>Recomendations for: {{ recommendations[0]['title'] }}</h2>
+                    <ul>
+                    {% for movie in recommendations %}
+                        <li>{{ movie['title'] }} - Similarity Rating: {{ movie['score'] }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- JavaScript file -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
