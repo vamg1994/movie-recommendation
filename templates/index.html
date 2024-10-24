@@ -5,68 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Recommendation System | Virgilio Madrid</title>
     
-    <!-- External fonts and styles -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Estilos actualizados -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <div class="overlay">
-        <div class="container">
-            <!-- Header section -->
-            <header>
-                <div class="header-left">
-                    <div class="logo_img"></div>
-                    <div class="header-text">
-                        <h1>Movie Recommendation System</h1>
-                        <h2>Elaborated by: Virgilio Madrid | Data Scientist</h2>
-                        <h3>This project recommends movies based on user ratings.</h3>
-                        <p class="subtitle">Skills: Python | Flask | Data Science | Backend | Frontend</p>
-                    </div>
-                </div>
-                <div class="header-right">
-                    <div class="profile_img"></div>
-                    <!-- Social media buttons -->
-                    <div class="social-buttons">
-                        <a href="https://www.linkedin.com/in/vamadrid" target="_blank" class="social-button linkedin-button">
-                            <i class="fab fa-linkedin-in"></i> LinkedIn
-                        </a>
-                        <a href="https://api.whatsapp.com/send?phone=50431755652&text=" target="_blank" class="social-button whatsapp-button">
-                            <i class="fab fa-whatsapp"></i> WhatsApp
-                        </a>
-                        <a href="mailto:virgiliomadrid1994@gmail.com" class="social-button email-button">
-                            <i class="fas fa-envelope"></i> E-Mail
-                        </a>
-                    </div>
-                </div>
-            </header>
+    <div class="container">
+        <!-- Header actualizado -->
+        <header>
+            <h1>Sistema de Recomendación de Películas</h1>
+            <p>Desarrollado por Virgilio Madrid | Científico de Datos</p>
+        </header>
 
-            <!-- Search form -->
-            <div class="search-container">
-                <form method="POST" id="movie-form">
-                    <input type="text" id="movie-input" name="movie_title" placeholder="Enter the movie title and select from the list" required>
-                    <input type="submit" value="Search">
-                </form>
-                <div id="autocomplete-results"></div>
-            </div>
-            
-            <!-- Error message display -->
-            {% if error %}
-                <p class="error">{{ error }}</p>
-            {% endif %}
-
-            <!-- Movie recommendations display -->
-            {% if recommendations %}
-                <div class="recommendations">
-                    <h2>Recomendations for: {{ recommendations[0]['title'] }}</h2>
-                    <ul>
-                    {% for movie in recommendations %}
-                        <li>{{ movie['title'] }} - Similarity Rating: {{ movie['score'] }}</li>
-                    {% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
+        <!-- Formulario de búsqueda actualizado -->
+        <div class="search-container">
+            <form method="POST" id="movie-form">
+                <input type="text" id="movie-input" name="movie_title" placeholder="Ingrese el título de la película y seleccione de la lista" required>
+                <button type="submit">Buscar</button>
+            </form>
+            <div id="autocomplete-results"></div>
         </div>
+        
+        <!-- Mensaje de error -->
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <!-- Recomendaciones de películas actualizadas -->
+        {% if recommendations %}
+            <div class="recommendations">
+                <h2>Recomendaciones para: {{ recommendations[0]['title'] }}</h2>
+                <ul class="movie-list">
+                {% for movie in recommendations %}
+                    <li class="movie-item">
+                        <span class="movie-title">{{ movie['title'] }}</span>
+                        <span class="movie-score">Puntuación de similitud: {{ movie['score'] }}</span>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <!-- Información de contacto actualizada -->
+        <footer>
+            <div class="contact-info">
+                <h3>Contacto</h3>
+                <p>Virgilio Madrid</p>
+                <p>Científico de Datos</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/vamadrid" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=50431755652&text=" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:virgiliomadrid1994@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <!-- JavaScript file -->

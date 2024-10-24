@@ -4,6 +4,8 @@ import pandas as pd
 from flask import jsonify
 import re
 import os
+import key
+import requests
 
 # Initialize the Flask application
 app = Flask(__name__, static_folder='static')
@@ -112,6 +114,19 @@ def search():
     results = movies[movies['title'].str.contains(query, case=False, na=False)]['title'].tolist()
     return jsonify(results[:10])
 
+# Configuración de la API de TMDB
+api_key = key.api_key
+base_url = 'https://api.themoviedb.org/3'
+
+@app.route('/movies')
+def index():
+    # Obtener películas populares
+    popular_url = f"{base_url}/movie/popular?api_key={api_key}&language=en-US"
+    response = requests.get(popular_url)
+    popular_movies = response.json()['results'][:20]  # Limitamos a 20 películas
+
+    return render_template('movie_info.html', movies=popular_movies)
+
 # Run the app
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

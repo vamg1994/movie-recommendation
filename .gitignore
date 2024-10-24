@@ -7,3 +7,10 @@ ratings_orig.csv
 #ignore MRS_sandbox.ipynb
 MRS_sandbox.ipynb
 
+#ignore key.py
+key.py
+
+#ignore movies_api.py
+movies_api.py
+
+

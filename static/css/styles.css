@@ -11,18 +11,20 @@
 
 /* Global styles */
 body {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--color-light-gray);
+    font-family: 'Roboto', sans-serif;
+    background-image: url('../images/wp.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #ffffff;
+    line-height: 1.6;
     margin: 0;
     padding: 0;
-    line-height: 1.6;
-    background: url('/static/images/wp.jpg') center/cover no-repeat fixed;
-    min-height: 100vh;
 }
 
 /* Layout components */
 .overlay {
-    background-color: rgba(67, 81, 95, 0.932);
+    background-color: rgba(67, 81, 95, 0.596);
     min-height: 100vh;
     position: relative;
     z-index: 1;
@@ -31,9 +33,9 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
-    position: relative;
-    z-index: 2;
+    padding: 20px;
+    background-color: rgba(126, 121, 121, 0.822); /* Fondo semi-transparente */
+    min-height: 100vh;
 }
 
 /* Header styles */
