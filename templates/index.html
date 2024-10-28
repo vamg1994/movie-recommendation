@@ -5,64 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Recommendation System | Virgilio Madrid</title>
     
-    <!-- Estilos actualizados -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <!-- External Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="container">
-        <!-- Header actualizado -->
+        <!-- Header Section -->
         <header>
-            <h1>Sistema de Recomendación de Películas</h1>
-            <p>Desarrollado por Virgilio Madrid | Científico de Datos</p>
+            <img src="{{ url_for('static', filename='images/v.png') }}" alt="Profile Picture" class="profile-picture">
+            <h1>Movie Recommendation System</h1>
+            <p>Developed by Virgilio Madrid | Data Scientist</p>
         </header>
 
-        <!-- Formulario de búsqueda actualizado -->
+        <!-- Search Form -->
         <div class="search-container">
             <form method="POST" id="movie-form">
-                <input type="text" id="movie-input" name="movie_title" placeholder="Ingrese el título de la película y seleccione de la lista" required>
-                <button type="submit">Buscar</button>
+                <input 
+                    type="text" 
+                    id="movie-input" 
+                    name="movie_title" 
+                    placeholder="Enter movie title and select from the list" 
+                    required
+                    autocomplete="off"
+                >
+                <button type="submit">Search</button>
             </form>
             <div id="autocomplete-results"></div>
         </div>
         
-        <!-- Mensaje de error -->
+        <!-- Error Message Display -->
         {% if error %}
             <p class="error">{{ error }}</p>
         {% endif %}
 
-        <!-- Recomendaciones de películas actualizadas -->
+        <!-- Movie Recommendations Section -->
         {% if recommendations %}
             <div class="recommendations">
-                <h2>Recomendaciones para: {{ recommendations[0]['title'] }}</h2>
+                <h2>Recommendations for: {{ recommendations[0]['title'] }}</h2>
                 <ul class="movie-list">
                 {% for movie in recommendations %}
                     <li class="movie-item">
                         <span class="movie-title">{{ movie['title'] }}</span>
-                        <span class="movie-score">Puntuación de similitud: {{ movie['score'] }}</span>
+                        <span class="movie-score">Similarity Score: {{ movie['score'] }}</span>
                     </li>
                 {% endfor %}
                 </ul>
             </div>
         {% endif %}
 
-        <!-- Información de contacto actualizada -->
+        <!-- Footer with Contact Information -->
         <footer>
             <div class="contact-info">
-                <h3>Contacto</h3>
+                <h3>Contact</h3>
                 <p>Virgilio Madrid</p>
-                <p>Científico de Datos</p>
+                <p>Data Scientist</p>
+                <!-- Social Media Links -->
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/vamadrid" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://api.whatsapp.com/send?phone=50431755652&text=" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    <a href="mailto:virgiliomadrid1994@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.linkedin.com/in/vamadrid" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin" aria-label="LinkedIn"></i>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=50431755652&text=" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp" aria-label="WhatsApp"></i>
+                    </a>
+                    <a href="mailto:virgiliomadrid1994@gmail.com">
+                        <i class="fas fa-envelope" aria-label="Email"></i>
+                    </a>
                 </div>
             </div>
         </footer>
     </div>
 
-    <!-- JavaScript file -->
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 </body>
 </html>
